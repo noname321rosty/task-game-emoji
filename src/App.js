@@ -1,9 +1,9 @@
 import './App.css';
-import Program from "./components/Program";
+import Game from "./components/Game";
 
 export default function App() {
   return (
-      <Program/>
+      <Game/>
   );
 }
 

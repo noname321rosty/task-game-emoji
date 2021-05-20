@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Program extends Component {
-
+export default class Game extends Component {
 	state = {
 		beer: 25 ,// 25 спичек -> 🍺
 		value: 1,
