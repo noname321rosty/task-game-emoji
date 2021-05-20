@@ -23,7 +23,7 @@ export default class Program extends Component {
 	};
 
 	addValue = () => {
-		if(this.state.beer <= 0){
+		if(this.state.beer === 0){
 			if(this.state.player1 % 2 === 0){
 				alert('player1 win 🍺')
 			}else {
@@ -32,12 +32,28 @@ export default class Program extends Component {
 
 		}else {
 			let random = Math.floor(Math.random() * 3) + 1;
+			if (this.state.beer <= 3){
+				random = this.state.value;
+			}
+			if(this.state.value > this.state.beer){
+				let beer = this.state.beer;
+				alert('ты неможеш взять больше 🍺 чем' + beer);
+				// eslint-disable-next-line react/no-direct-mutation-state
+				this.state.value = beer
+
+				if (this.state.player1 % 2 === 0) {
+					alert('player1 win 🍺')
+				} else {
+					alert('player2 win 🍺')
+				}
+			}
 			this.setState({
 				player1: this.state.player1 + +this.state.value,
 				player2: this.state.player2 + random,
-				beer: this.state.beer - +this.state.value - random ,
+				beer: this.state.beer - +this.state.value - random
 
 			})
+
 		}
 	}
 
@@ -51,7 +67,7 @@ export default class Program extends Component {
 						<input type="text" placeholder={this.state.value} onChange={this.handleValue.bind(this)}/>
 						<button onClick={this.addValue.bind(this)}> add beer to me </button>
 						<p>player1 🍺 = {this.state.player1}</p>
-						<p>player2 🍺 = {this.state.player2}</p>
+						<p>player2(bot) 🍺 = {this.state.player2}</p>
 
 					</div>
 				}
